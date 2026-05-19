@@ -5,7 +5,7 @@ import { useAuthStore } from '../store/authStore';
 import TodoItem from '../components/TodoItem';
 import apiClient from '../api/client';
 import ReactMarkdown from 'react-markdown';
-import { Plus, DownloadCloud, Crown, LayoutDashboard, ShieldCheck, Copy, Globe, Check, Mail } from 'lucide-react';
+import { Plus, Crown, LayoutDashboard, ShieldCheck, Copy, Globe, Check, Mail } from 'lucide-react';
 
 export default function Dashboard() {
   const navigate = useNavigate();
