@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/client/index.html" },
+    { "source": "/(.*)", "destination": "/client/index.html" }
+  ],
+  "routes": [
+    { "src": "/api", "dest": "/api/index.js" }
+  ]
+}

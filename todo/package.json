@@ -1,0 +1,15 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Todo app with client, server, and serverless API",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node server/server.js",
+    "format": "echo \"add prettier if desired\""
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

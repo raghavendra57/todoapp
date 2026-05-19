@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To Do Activity Application</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="app-header">
+    <h1>To Do Activity Application</h1>
+    <div class="header-actions">
+      <button id="toggle-theme" title="Toggle theme" aria-label="Toggle theme">🌓</button>
+      <button id="export-json" title="Export tasks to JSON">Export</button>
+      <input id="import-file" type="file" accept="application/json" hidden />
+      <button id="import-json" title="Import tasks from JSON">Import</button>
+      <button id="undo" title="Undo last action" disabled>Undo</button>
+      <button id="redo" title="Redo last undone action" disabled>Redo</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <aside class="sidebar">
+      <div class="panel">
+        <h2>Lists</h2>
+        <ul id="lists" class="list"></ul>
+        <div class="row gap">
+          <input id="new-list-name" type="text" placeholder="New list name" />
+          <button id="add-list">Add</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Filters</h2>
+        <div class="filters">
+          <input id="search" type="search" placeholder="Search tasks (title, notes, subtasks)" />
+          <div class="row wrap gap">
+            <label><input type="checkbox" id="filter-completed" /> Hide Completed</label>
+            <label><input type="checkbox" id="filter-priority-high" /> High Priority</label>
+            <label><input type="checkbox" id="filter-has-duedate" /> With Due Date</label>
+            <label><input type="checkbox" id="filter-overdue" /> Overdue</label>
+          </div>
+          <div class="row gap">
+            <label>Sort by
+              <select id="sort-by">
+                <option value="createdAt-desc">Created (newest)</option>
+                <option value="createdAt-asc">Created (oldest)</option>
+                <option value="dueAt-asc">Due (soonest)</option>
+                <option value="dueAt-desc">Due (latest)</option>
+                <option value="priority-desc">Priority (high→low)</option>
+                <option value="priority-asc">Priority (low→high)</option>
+                <option value="title-asc">Title (A→Z)</option>
+                <option value="title-desc">Title (Z→A)</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Stats</h2>
+        <div id="stats" class="stats"></div>
+        <canvas id="chart" width="260" height="160" aria-label="Completion chart"></canvas>
+      </div>
+    </aside>
+
+    <section class="content">
+      <div class="panel">
+        <h2>New Task</h2>
+        <form id="task-form" class="task-form" autocomplete="off">
+          <input id="task-title" type="text" placeholder="Task title" required />
+          <input id="task-due" type="datetime-local" />
+          <select id="task-priority">
+            <option value="1">Low</option>
+            <option value="2">Medium</option>
+            <option value="3">High</option>
+          </select>
+          <input id="task-tags" type="text" placeholder="Tags e.g. work, urgent" />
+          <textarea id="task-notes" placeholder="Notes"></textarea>
+          <label class="row gap"><input type="checkbox" id="task-reminder"> Reminder</label>
+          <div id="subtasks" class="subtasks"></div>
+          <div class="row gap">
+            <input id="new-subtask" type="text" placeholder="Add subtask" />
+            <button type="button" id="add-subtask">Add Subtask</button>
+          </div>
+          <div class="row gap wrap">
+            <button type="submit">Add Task</button>
+            <button type="button" id="clear-form">Clear</button>
+            <button type="button" id="bulk-complete">Complete Selected</button>
+            <button type="button" id="bulk-delete">Delete Selected</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="panel">
+        <div class="row space-between align-center">
+          <h2 id="current-list-title">Tasks</h2>
+          <div class="row gap wrap">
+            <button id="select-all">Select All</button>
+            <button id="clear-completed">Clear Completed</button>
+          </div>
+        </div>
+        <ul id="tasks" class="tasks"></ul>
+        <div id="empty" class="empty">No tasks yet. Create your first task above.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>Keyboard: n = new task focus, / = search, j/k = navigate, x = toggle, del = delete</div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
